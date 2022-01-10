@@ -1,0 +1,45 @@
+Student Log System
+
+DATABASE STRUCTURE:
+
+Table 1: Login {
+  1]  id
+  2]  Username
+  3]  Password
+  4]  Mobile Number
+}
+
+Table 2 : Student {
+  1]  ID
+  2]  Roll No (eg. BCOM_SEM_1_123456) (CONCATENATE(D2,"_SEM_",E2,"_",B2)
+  3]  Full Name of Student
+  4]  Faculty Name (BBA, BCOM, BCA, etc)
+  5]  Studying Sem (1, 2, 3, 4, 5, 6)
+}
+Table 3 : Staff {
+  1]  ID
+  2]  Emp No (eg. Staff_FYBCOM_123456)
+  3]  Full Name of Employee
+  4]  Faculty Name (BBA, BCOM, BCA, etc)
+}
+
+Table 4: Attendance {
+  1]  ID
+  2]  Roll No | Emp No
+  3]  Date
+  4]  Arriving Time
+  5]  Leaving Time
+}
+
+
+Features:
+  Admin Rights:
+    Log-In | Log-Out | Forgot Password
+    Manage Students | Staff (Add, Update, Delete)
+    Add Students | Staff by importing excel sheet
+    Take Attendance (Fill Present of Student | Staff whene entering campus)
+    Give Leave (Fill Leave time of Students | Staff when leaving campus)
+    View Reports
+
+Limitations:
+  This application only stores arriving time of student in campus and leaving time of campus so it can not be used to take Class wise or Lecture wise Attendance.
