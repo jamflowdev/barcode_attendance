@@ -137,40 +137,35 @@
 			$('.dataTables_length').hide();
 			$('.dataTables_info').hide();
 			$('.dataTables_paginate').hide();
-			$('input[type="search"]').on("input", function() {
-				this.value = $.trim(this.value);
-				// console.log($.trim(this.value).length);
- 				// ($.trim(this.value).length >= 5) ? $('.table').show() : $('.table').hide()
-				if($.trim(this.value).length >= 5	){
-					$('.table').show()
+			$('input[type="search"]').on('keypress',function(e) {
+					if(e.which == 13) {
 					// console.log(this.value);
-					let barcode = $.trim(this.value);
-					// let barcode=$(this).attr('data-id');
-					$.ajax({
-						url:'get_att.php',
-						method:"POST",
-						data:{barcode: barcode},
-						error:err=>console.log(),
-						success:function(resp){
-							if(typeof resp !=undefined){
-								resp = JSON.parse(resp)
-								console.log(resp)
-								// console.log($('#IN','data-barcode='+barcode))
-								if(resp.status == 1){
-									$("#IN"+barcode).trigger('click');
-								}else if(resp.status == 2){
-									$("#OUT"+barcode).trigger('click');
-								}else{
-									alert(resp.msg)
+					let barcode = this.value;
+						$.ajax({
+							url:'get_att.php',
+							method:"POST",
+							data:{barcode: barcode},
+							error:err=>console.log(),
+							success:function(resp){
+								if(typeof resp !=undefined){
+									resp = JSON.parse(resp)
+									console.log(resp)
+									// console.log($('#IN','data-barcode='+barcode))
+									if(resp.status == 1){
+										$("#IN"+barcode).trigger('click');
+									}else if(resp.status == 2){
+										$("#OUT"+barcode).trigger('click');
+									}else{
+										alert(resp.msg)
+										location.reload()
+									}
 								}
-
 							}
-						}
-					})
-				}else{
-					$('.table').hide()
-				}
-				
+						})
+					}
+			});
+			$('input[type="search"]').on("input", function() {
+ 				($.trim(this.value).length >= 5) ? $('.table').show() : $('.table').hide()
 			});
 
 			
